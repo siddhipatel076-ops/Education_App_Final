@@ -12,6 +12,12 @@ import {
 import Checkbox from 'expo-checkbox';
 
 import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+
+import {
   NavigationContainer,
 } from '@react-navigation/native';
 
@@ -20,6 +26,11 @@ import {
 } from '@react-navigation/native-stack';
 
 import Home from './components/Home';
+import Course from './components/Course';
+import CourseDetails from './components/CourseDetails';
+import UserData from './components/UserData';
+import About from './components/About';
+import Contact from './components/Contact';
 
 const Stack = createNativeStackNavigator();
 
@@ -104,11 +115,19 @@ const LoginScreen = ({ navigation }) => {
 
 const App = () => {
 
-  return (
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+  });
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
     <NavigationContainer>
 
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login">
 
         <Stack.Screen
           name="Login"
@@ -120,10 +139,34 @@ const App = () => {
           component={Home}
         />
 
+        <Stack.Screen
+          name="Course"
+          component={Course}
+        />
+
+        <Stack.Screen
+          name="CourseDetails"
+          component={CourseDetails}
+        />
+
+        <Stack.Screen
+          name="UserData"
+          component={UserData}
+        />
+
+        <Stack.Screen
+          name="About"
+          component={About}
+        />
+
+        <Stack.Screen
+          name="Contact"
+          component={Contact}
+        />
+
       </Stack.Navigator>
 
     </NavigationContainer>
-
   );
 };
 
@@ -177,4 +220,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-rnf
